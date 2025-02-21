@@ -65,7 +65,7 @@ export default function Header() {
             {/* Get in Touch Button */}
             <Link
               href="/contact"
-              className="hidden md:flex items-center gap-2 px-8 py-3 text-xl rounded-full border border-black hover:bg-black hover:text-white transition-colors duration-300"
+              className="hidden md:flex items-center gap-2 px-8 py-3 text-xl rounded-full border border-border hover:bg-foreground hover:text-background transition-colors duration-300"
             >
               <span>GET IN TOUCH</span>
               <MoveRight className="w-4 h-4" />
