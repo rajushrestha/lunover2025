@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ChartNoAxesGantt, MoveRight } from "lucide-react";
+import ArrowUpRight from "../icons/arrow-up-right";
 
 const LETTERS = [
   {
@@ -65,10 +66,10 @@ export default function Header() {
             {/* Get in Touch Button */}
             <Link
               href="/contact"
-              className="hidden md:flex items-center gap-2 px-8 py-3 text-xl rounded-full border border-border hover:bg-foreground hover:text-background transition-colors duration-300"
+              className="hidden md:flex items-center gap-2 px-8 py-3 text-xl font-medium rounded-full border-2 border-border hover:bg-foreground hover:text-background transition-colors duration-300 group"
             >
               <span>GET IN TOUCH</span>
-              <MoveRight className="w-4 h-4" />
+              <ArrowUpRight className="w-6 h-6 group-hover:rotate-45 transition-transform duration-300" />
             </Link>
 
             {/* Menu Button */}

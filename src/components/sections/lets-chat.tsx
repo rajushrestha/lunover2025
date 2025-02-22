@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import ArrowUpRight from "../icons/arrow-up-right";
 
 export default function LetsChat() {
   return (
-    <section className="flex flex-col md:flex-row md:gap-10 items-center justify-between py-20 bg-black text-white">
+    <section className="flex flex-col md:flex-row md:gap-10 items-center justify-between py-20 border-b border-border/40 dark:border-border">
       <div className="mb-12">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-8xl font-medium mb-4">
           Let's Chat

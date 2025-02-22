@@ -2,11 +2,10 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
+import ArrowUpRight from "../icons/arrow-up-right";
 const blogPosts = [
   {
     title:
@@ -50,11 +49,11 @@ export default function Blog() {
   }, [blogPosts]);
 
   return (
-    <section className="py-20">
+    <section className="py-20 sm:py-32">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-4 lg:justify-between lg:items-end mb-10 lg:mb-20">
           <div className="pb-4 md:pb-8 lg:pr-20 lg:pb-0">
-            <h2 className="text-4xl md:text-6xl lg:text-8xl font-normal">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-normal">
               Our Blogs and Insights
             </h2>
           </div>
@@ -137,14 +136,20 @@ export default function Blog() {
                           : "border-border/40"
                       )}
                     >
-                      <ArrowUpRight
+                      {/* <ArrowUpRight
                         className={cn(
                           "w-6 h-6 sm:w-8 sm:h-8 xl:w-10 xl:h-10 group-hover:rotate-45 transition-transform",
                           active
                             ? "text-foreground rotate-45"
                             : "text-foreground/60"
                         )}
-                      />
+                      /> */}
+                      <ArrowUpRight className={cn(
+                          "w-6 h-6 sm:w-8 sm:h-8 xl:w-10 xl:h-10 group-hover:rotate-45 transition-transform",
+                          active
+                            ? "text-foreground rotate-45"
+                            : "text-foreground/60"
+                        )} />
                     </div>
                   </Link>
                 </motion.article>

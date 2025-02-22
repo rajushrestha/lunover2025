@@ -11,17 +11,13 @@ import Clients from "@/components/sections/clients";
 export default function Home() {
   return (
     <>
-      <Header />
-      <main>
-        <Hero />
-        <GetInTouch />
-        <Projects />
-        <Services />
-        <Testimonials />
-        <Clients />
-        <Blog />
-      </main>
-      <Footer />
+      <Hero />
+      <GetInTouch />
+      <Projects />
+      <Services />
+      <Testimonials />
+      <Clients />
+      <Blog />
     </>
   );
 }

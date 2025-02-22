@@ -1,49 +1,86 @@
-import Link from 'next/link'
-import LetsChat from '../sections/lets-chat'
+import Link from "next/link";
+import LetsChat from "../sections/lets-chat";
 
 export default function Footer() {
   return (
-    <footer className="py-12 bg-black text-white">
-      <div className="container mx-auto px-4">
+    <footer className="bg-black text-white relative">
+      <div className="container mx-auto px-4 py-12">
         <LetsChat />
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
-          <div>
-            <h3 className="font-bold mb-4">About</h3>
-            <Link href="/about" className="block text-gray-400 hover:text-white mb-2">
-              About Us
-            </Link>
-            <Link href="/projects" className="block text-gray-400 hover:text-white mb-2">
-              Projects
-            </Link>
+        <div className="flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-20 justify-between py-12 sm:py-24">
+          <div className="flex flex-row gap-12 md:gap-16 lg:gap-20 mb-12 md:mb-0">
+            <div className="flex flex-col gap-4 md:gap-8">
+              <Link
+                href="/about"
+                className="inline-flex text-xl sm:text-2xl lg:text-3xl font-medium hover:underline underline-offset-8"
+              >
+                About Us
+              </Link>
+              <Link
+                href="/projects"
+                className="inline-flex text-xl sm:text-2xl lg:text-3xl font-medium hover:underline underline-offset-8"
+              >
+                Projects
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex text-xl sm:text-2xl lg:text-3xl font-medium hover:underline underline-offset-8"
+              >
+                Services
+              </Link>
+            </div>
+            <div className="flex flex-col gap-4 md:gap-8">
+              <Link
+                href="/contact"
+                className="inline-flex text-xl sm:text-2xl lg:text-3xl font-medium hover:underline underline-offset-8"
+              >
+                Contact
+              </Link>
+              <Link
+                href="/careers"
+                className="inline-flex text-xl sm:text-2xl lg:text-3xl font-medium hover:underline underline-offset-8"
+              >
+                Careers
+              </Link>
+              <Link
+                href="/blog"
+                className="inline-flex text-xl sm:text-2xl lg:text-3xl font-medium hover:underline underline-offset-8"
+              >
+                Blog
+              </Link>
+            </div>
           </div>
-          <div>
-            <h3 className="font-bold mb-4">Services</h3>
-            <Link href="/services" className="block text-gray-400 hover:text-white mb-2">
-              Services
+          <div className="flex flex-col gap-4 md:gap-8 md:items-end">
+            <Link
+              href="https://maps.app.goo.gl/Rkop7S8JseGZQe4t9"
+              target="_blank"
+              className="inline-flex text-xl sm:text-2xl lg:text-3xl font-medium hover:underline underline-offset-8"
+            >
+              Paknajol, Thamel, Kathmandu
             </Link>
-            <Link href="/careers" className="block text-gray-400 hover:text-white mb-2">
-              Careers
-            </Link>
-          </div>
-          <div>
-            <h3 className="font-bold mb-4">Blog</h3>
-            <Link href="/blog" className="block text-gray-400 hover:text-white mb-2">
-              Blog
-            </Link>
-          </div>
-          <div className="col-span-2">
-            <h3 className="font-bold mb-4">Contact</h3>
-            <a href="mailto:hello@lunover.com" className="block text-gray-400 hover:text-white mb-2">
+            <Link
+              href="mailto:hello@lunover.com"
+              className="inline-flex text-xl sm:text-2xl lg:text-3xl font-medium hover:underline underline-offset-8"
+            >
               hello@lunover.com
-            </a>
-            <p className="text-gray-400">+1 123 456 789</p>
+            </Link>
+            <Link
+              href="tel:+9779851353274"
+              className="inline-flex text-xl sm:text-2xl lg:text-3xl font-medium hover:underline underline-offset-8"
+            >
+              +977 9851353274
+            </Link>
           </div>
         </div>
-        <div className="text-center text-gray-400 text-sm">
+
+        <div className="text-center text-muted-foreground">
           © {new Date().getFullYear()} Lunover. All rights reserved.
         </div>
       </div>
+
+      <div className="text-center text-[20.5vw] font-extrabold leading-none overflow-hidden">
+        LUNOVER
+      </div>
     </footer>
-  )
+  );
 }

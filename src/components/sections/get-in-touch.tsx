@@ -1,5 +1,6 @@
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
+import ArrowUpRight from "../icons/arrow-up-right";
 
 export default function GetInTouch() {
   return (
@@ -13,10 +14,10 @@ export default function GetInTouch() {
           {/* Get in Touch Button */}
           <Link
             href="/contact"
-            className="hidden md:flex items-center gap-2 px-8 py-3 text-xl rounded-full border border-black hover:bg-black hover:text-white transition-colors duration-300"
+            className="hidden md:flex items-center gap-2 px-8 py-3 text-xl font-medium rounded-full border-2 border-border hover:bg-foreground hover:text-background transition-colors duration-300 group"
           >
             <span>GET IN TOUCH</span>
-            <MoveRight className="w-4 h-4" />
+            <ArrowUpRight className="w-6 h-6 group-hover:rotate-45 transition-transform duration-300" />
           </Link>
         </div>
 
@@ -36,7 +37,7 @@ export default function GetInTouch() {
             About Us
           </Link>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 sm:text-right">
             <Link
               href="mailto:hello@lunover.com"
               className="text-lg md:text-3xl font-medium leading-tight underline underline-offset-8 hover:no-underline"
@@ -44,10 +45,10 @@ export default function GetInTouch() {
               hello@lunover.com
             </Link>
             <Link
-              href="tel:+977-9808000000"
+              href="tel:+9779851353274"
               className="text-lg md:text-3xl font-medium leading-tight underline underline-offset-8 hover:no-underline"
             >
-              +977-9808000000
+              +977 9851353274
             </Link>
           </div>
         </div>

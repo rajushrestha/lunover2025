@@ -69,7 +69,7 @@ export default function Projects() {
               </div>
 
               <div className="relative z-10 p-8 sm:p-16 md:p-24 text-white">
-                <h3 className="text-4xl md:text-6xl font-normal mb-4">{project.title}</h3>
+                <h3 className="text-4xl md:text-6xl font-semibold mb-4">{project.title}</h3>
                 <p className="mb-8 text-lg sm:text-2xl max-w-lg">{project.description}</p>
 
                 <div className="flex gap-2 flex-wrap">
