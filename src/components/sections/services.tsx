@@ -5,34 +5,34 @@ import Link from "next/link";
 
 const services = [
   {
-    title: "Product Design",
+    title: "Web Design & Development",
     description:
-      "Our product design services will turn your ideas into reality. We combine user research, interface design, and prototyping to create products that users love.",
+      "We create high-performance websites that drive business growth. Our end-to-end approach delivers visually stunning, technically excellent sites that attract visitors, boost engagement, and maximize conversions.",
   },
   {
-    title: "Graphic Design",
+    title: "AI Solutions",
     description:
-      "From brand identity to marketing materials, our graphic design team creates visually stunning assets that capture attention and communicate effectively.",
+      "Our advanced AI applications drive measurable growth through intelligent automation and enhanced customer experiences. From RAG chatbots to custom image generation, we implement AI that increases engagement while reducing costs.",
   },
   {
-    title: "Branding",
+    title: "Branding & Identity",
     description:
-      "We help you build a strong, memorable brand identity that resonates with your audience and stands out in today's competitive market.",
+      "We build brands engineered for growth. Our strategic branding connects with your target audience, differentiates you from competitors, and creates the foundation for increased traffic, engagement, and customer loyalty.",
   },
   {
-    title: "Illustration",
+    title: "SEO & Content Strategy",
     description:
-      "Our custom illustrations bring your stories and concepts to life, adding a unique and personal touch to your digital presence.",
+      "We implement data-driven SEO and content strategies that increase your visibility, drive targeted traffic, and boost conversions. Our approach focuses on sustainable growth and measurable business results.",
   },
   {
-    title: "Web Development",
+    title: "Custom Application Development",
     description:
-      "We build modern, responsive websites that not only look great but also perform exceptionally well across all devices.",
+      "Our apps are built for user retention and business growth. From concept to launch, we develop mobile and web applications that keep users engaged, maximize conversions, and provide measurable ROI for your business.",
   },
   {
-    title: "App Development",
+    title: "Growth-Focused Team as a Service",
     description:
-      "From concept to launch, we develop native and cross-platform mobile applications that provide seamless user experiences.",
+      "We provide dedicated teams focused on growing your business through increased traffic, engagement, and sales. Our specialists work as an extension of your organization with clear growth objectives.",
   },
 ];
 
@@ -42,11 +42,14 @@ export default function Services() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-4 lg:justify-between lg:items-end mb-10">
           <div className="pb-4 md:pb-10 lg:pr-20 lg:pb-0">
-            <h2 className="text-4xl md:text-6xl lg:text-8xl font-normal mb-4">Our Services</h2>
+            <h2 className="text-4xl md:text-6xl lg:text-8xl font-normal mb-4">
+              Our Services
+            </h2>
             <p className="mb-0 text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-              Our services are more than just solutions, they're opportunities
-              to transform your digital presence and achieve your business
-              objectives. We're here to make your digital dreams a reality.
+              We provide growth-focused digital solutions that transform your
+              online presence. Each service is strategically designed to attract
+              visitors, increase engagement, and boost conversions—turning your
+              website into a powerful business growth engine.
             </p>
           </div>
 

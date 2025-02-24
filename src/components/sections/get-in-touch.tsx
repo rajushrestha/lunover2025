@@ -8,7 +8,7 @@ export default function GetInTouch() {
       <div className="container mx-auto px-4">
         <div className="hidden sm:flex items-center justify-between gap-4 mb-10">
           <span className="text-2xl font-normal">
-            Digital Agency Based in KATHMANDU
+            Growth-Focused Digital Agency
           </span>
 
           {/* Get in Touch Button */}
@@ -22,11 +22,11 @@ export default function GetInTouch() {
         </div>
 
         <p className="text-xl md:text-2xl lg:text-4xl pt-4 mb-4">
-          Based in the vibrant heart of Kathmandu, Nepal, Lunover is not just a
-          digital agency, we're your partners in creativity. Our mission is to
-          turn your dreams into reality, one pixel at a time. With a diverse
-          team of designers, developers, and innovators, we're constantly
-          pushing the boundaries of what's possible in the digital world.
+          We build digital experiences that drive real growth. Our websites
+          don't just look great—they perform. Through strategic design, seamless
+          user experiences, and data-driven optimization, we help your business
+          attract more visitors, boost engagement, and convert leads into loyal
+          customers.
         </p>
 
         <div className="flex justify-between flex-col sm:flex-row gap-5 pt-6 sm:pt-12">

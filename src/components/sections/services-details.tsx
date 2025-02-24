@@ -1,61 +1,54 @@
 const services = [
   {
-    title: "Web Design",
+    title: "Web Design & Development",
     description:
-      "We create stunning, responsive websites that are easy to use and look great on all devices.",
+      "We create high-performance websites strategically engineered to drive traffic, engagement, and conversions. Our end-to-end approach combines stunning visuals with technical excellence to deliver sites that not only look great but generate measurable business growth.",
     lists: [
-      "Responsive Design",
-      "Customizable Templates",
-      "SEO Optimization",
-      "User-Friendly Interface",
-      "Mobile-Friendly Design",
-    ],
-  },
-  {
-    title: "Web Development",
-    description:
-      "We build robust, scalable websites that are easy to manage and update.",
-    lists: [
-      "Responsive Design",
-      "Customizable Templates",
-      "SEO Optimization",
-      "User-Friendly Interface",
-      "Mobile-Friendly Design",
+      "UX Design (40% Higher Conversions)",
+      "Fast Loading (<2s, 30% Lower Bounce Rates)",
+      "SEO Architecture (Top 3 Rankings)",
+      "High-Converting Landing Pages (65% Engagement)",
+      "Data-Driven A/B Testing",
+      "Mobile-First Design (52% Revenue Increase)",
+      "Behavior Analytics with ROI Focus",
+      "Lead-Capture Systems",
+      "Accessibility (20% Larger Reach)",
     ],
   },
   {
     title: "AI Services",
     description:
-      "We offer a range of AI services to help you automate your business processes and improve your operations.",
+      "Our advanced AI solutions drive business growth through intelligent automation and enhanced customer experiences. We implement cutting-edge AI technologies customized to your specific business goals, increasing engagement and conversions while reducing operational costs.",
     lists: [
-      "Responsive Design",
-      "Customizable Templates",
-      "SEO Optimization",
-      "User-Friendly Interface",
-      "Mobile-Friendly Design",
+      "24/7 Product Chatbots (-90% Support Costs)",
+      "Custom Brand Imagery (-75% Design Time)",
+      "Email Response Automation (+45% Open Rates)",
+      "Purchase Pattern Analysis (+42% Cart Value)",
+      "Content Personalization (3× Engagement)",
+      "Lead Scoring AI (68% Conversion Boost)",
     ],
   },
   {
     title: "SEO Services",
     description:
-      "We optimize your website for search engines to improve your visibility and drive more traffic to your site.",
+      "We implement data-driven SEO strategies that increase your visibility, drive targeted traffic, and boost conversions. Our approach focuses on sustainable growth and measurable business results.",
     lists: [
-      "Responsive Design",
-      "Customizable Templates",
-      "SEO Optimization",
-      "User-Friendly Interface",
-      "Mobile-Friendly Design",
+      "Traffic Growth Strategy",
+      "Conversion-Focused Keywords",
+      "Engagement-Optimized Content",
+      "Technical SEO for Performance",
+      "Analytics-Driven Optimization",
     ],
   },
   {
     title: "Team as a Service",
     description:
-      "We offer a range of team as a service to help you automate your business processes and improve your operations.",
+      "We provide dedicated teams focused on growing your business through increased traffic, engagement, and sales. Our specialists work as an extension of your organization with clear growth objectives.",
     lists: [
-      "Precise Candidate Selection",
-      "Thorough Technology Evaluation",
-      "Comprehensive Background Checks",
-      "Client-Centric Final Selection",
+      "Growth-Focused Talent Selection",
+      "Performance-Oriented Specialists",
+      "ROI-Driven Team Structure",
+      "Conversion Optimization Experts",
     ],
   },
 ];

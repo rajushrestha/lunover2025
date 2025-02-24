@@ -8,8 +8,9 @@ export default function LetsChat() {
   return (
     <section className="flex flex-col md:flex-row md:gap-10 xl:gap-20 items-center justify-between py-8 md:py-16 lg:py-24 xl:py-32 border-b border-border/40 dark:border-border">
       <div className="mb-12 max-w-5xl">
-        <h2 className="text-5xl sm:text-6xl md:text-[7vw] font-normal leading-[1.05] tracking-tight sm:-mx-2 mb-4">
-          Let{"'"}s talk today, and turn your ideas into digital masterpieces.
+        <h2 className="text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.05] tracking-tight sm:-mx-2 mb-4">
+          Let{"'"}s talk today about growing your business with a website that
+          converts.
         </h2>
       </div>
 
