@@ -69,7 +69,7 @@ export default function ServicesDetails() {
             key={`${service.title}-${index}`}
             className="flex flex-col lg:flex-row gap-4 md:gap-8 xl:gap-16 relative pb-10 md:pb-20 lg:pb-32 xl:pb-40"
           >
-            <div className="lg:w-1/2 lg:pt-10">
+            <div className="lg:w-1/2 lg:pt-8">
               <h3 className="text-4xl lg:text-5xl xl:text-7xl mb-2 lg:mb-4 xl:mb-6 font-medium">
                 {service.title}
               </h3>
