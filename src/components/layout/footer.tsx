@@ -3,10 +3,25 @@
 import Link from "next/link";
 import LetsChat from "@/components/sections/lets-chat";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 
 export default function Footer() {
   const pathname = usePathname();
   const isContactPage = pathname === "/contact";
+  const textRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (textRef.current) {
+      const rect = textRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top,
+      });
+    }
+  };
 
   return (
     <footer className="bg-black text-white relative">
@@ -84,8 +99,56 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-center text-[20.5vw] font-extrabold leading-none overflow-hidden">
-        <Link href="/">LUNOVER</Link>
+      <div
+        ref={textRef}
+        className="text-center text-[20.5vw] font-extrabold leading-none overflow-hidden relative cursor-pointer"
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+      >
+        <Link href="/" className="relative inline-block">
+          <span className="opacity-20">LUNOVER</span>
+
+          <motion.span
+            className="absolute inset-0 bg-clip-text text-transparent"
+            style={{
+              backgroundImage: isHovering
+                ? `radial-gradient(circle 300px at ${mousePosition.x}px ${mousePosition.y}px, 
+                    rgba(255,255,255,1) 0%, 
+                    rgba(255,255,255,0.9) 20%, 
+                    rgba(255,255,255,0.7) 35%, 
+                    rgba(255,255,255,0.4) 50%, 
+                    rgba(255,255,255,0.2) 75%, 
+                    rgba(255,255,255,0) 100%)`
+                : `linear-gradient(90deg, 
+                    rgba(255,255,255,0) 0%, 
+                    rgba(255,255,255,0.2) 20%, 
+                    rgba(255,255,255,0.5) 30%, 
+                    rgba(255,255,255,0.8) 40%, 
+                    rgba(255,255,255,1) 50%, 
+                    rgba(255,255,255,0.8) 60%, 
+                    rgba(255,255,255,0.5) 70%, 
+                    rgba(255,255,255,0.2) 80%, 
+                    rgba(255,255,255,0) 100%)`,
+              backgroundSize: isHovering ? "auto" : "200% 100%",
+              backgroundPosition: isHovering
+                ? "0% 0%"
+                : `${Math.sin(new Date().getTime() / 12000) * 100 + 100}% 0%`,
+            }}
+            animate={{
+              backgroundPosition: isHovering ? "0% 0%" : ["0% 0%", "200% 0%"],
+            }}
+            transition={{
+              backgroundPosition: {
+                duration: isHovering ? 0 : 12,
+                repeat: isHovering ? 0 : Infinity,
+                ease: "linear",
+              },
+            }}
+          >
+            LUNOVER
+          </motion.span>
+        </Link>
       </div>
     </footer>
   );
