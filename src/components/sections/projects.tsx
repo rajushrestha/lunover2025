@@ -38,10 +38,12 @@ export default function Projects() {
     offset: ["start start", "end end"],
   });
 
+  // Calculate total translation including the wider last section
+  const totalSlides = projects.length;
   const translateX = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, -100 * (projects.length - 1)]
+    [0, -(100 * (totalSlides - 1) + 100)] // 75vw for projects + 100vw for last section
   );
 
   return (
@@ -54,7 +56,7 @@ export default function Projects() {
           {projects.map((project) => (
             <motion.div
               key={project.title}
-              className="h-full w-[75vw] flex-shrink-0 flex items-end relative"
+              className="h-full w-screen flex-shrink-0 flex items-end relative"
             >
               <div className="absolute top-0 left-0 w-full h-full z-0">
                 <Image
@@ -68,9 +70,13 @@ export default function Projects() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/30" />
               </div>
 
-              <div className="relative z-10 p-8 sm:p-16 md:p-24 text-white">
-                <h3 className="text-4xl md:text-6xl font-semibold mb-4">{project.title}</h3>
-                <p className="mb-8 text-lg sm:text-2xl max-w-lg">{project.description}</p>
+              <div className="container mx-auto relative z-10 p-4 sm:py-16 md:py-24 text-white">
+                <h3 className="text-4xl md:text-6xl font-semibold mb-4">
+                  {project.title}
+                </h3>
+                <p className="mb-8 text-lg sm:text-2xl max-w-lg">
+                  {project.description}
+                </p>
 
                 <div className="flex gap-2 flex-wrap">
                   {project.tags.map((tag, index) => (
@@ -86,8 +92,10 @@ export default function Projects() {
             </motion.div>
           ))}
 
-          <div className="h-full w-[75vw] text-center flex-shrink-0 flex flex-col items-center justify-center relative p-8 sm:p-16 bg-foreground text-background dark:bg-background dark:text-foreground">
-            <span className="text-4xl sm:text-6xl md:text-8xl font-semibold mb-10">Want to see more?</span>
+          <div className="h-full w-screen text-center flex-shrink-0 flex flex-col items-center justify-center relative p-8 sm:p-16 bg-foreground text-background dark:bg-background dark:text-foreground">
+            <span className="text-4xl sm:text-6xl md:text-8xl font-semibold mb-10">
+              Want to see more?
+            </span>
             <Link
               href="/projects"
               className="text-lg sm:text-2xl font-medium uppercase underline underline-offset-8 hover:no-underline"

@@ -70,7 +70,7 @@ export default function Services() {
               <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal">
                 {service.title}
               </h3>
-              <p className="text-lg sm:text-2xl md:text-2xl text-muted-foreground leading-relaxed lg:w-1/2">
+              <p className="text-lg sm:text-2xl md:text-2xl lg:text-3xl/normal text-muted-foreground leading-relaxed lg:w-1/2">
                 {service.description}
               </p>
             </motion.div>

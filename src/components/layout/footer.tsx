@@ -1,11 +1,17 @@
+"use client";
+
 import Link from "next/link";
-import LetsChat from "../sections/lets-chat";
+import LetsChat from "@/components/sections/lets-chat";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isContactPage = pathname === "/contact";
+
   return (
     <footer className="bg-black text-white relative">
       <div className="container mx-auto px-4 py-12">
-        <LetsChat />
+        {!isContactPage && <LetsChat />}
 
         <div className="flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-20 justify-between py-12 sm:py-24">
           <div className="flex flex-row gap-12 md:gap-16 lg:gap-20 mb-12 md:mb-0">
@@ -79,7 +85,7 @@ export default function Footer() {
       </div>
 
       <div className="text-center text-[20.5vw] font-extrabold leading-none overflow-hidden">
-        LUNOVER
+        <Link href="/">LUNOVER</Link>
       </div>
     </footer>
   );
