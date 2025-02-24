@@ -36,9 +36,9 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-[90vh] flex flex-col lg:flex-row items-stretch bg-white">
+    <section className="min-h-[90vh] flex flex-col lg:flex-row items-stretch bg-white w-full max-w-[94rem] mx-auto">
       {/* Left content side */}
-      <div className="w-full lg:w-1/2 p-6 md:p-10 lg:p-16 xl:p-20 flex flex-col justify-center">
+      <div className="w-full lg:w-1/2 p-6 md:p-10 lg:p-16 xl:p-20 flex flex-col justify-center 2xl:pl-0">
         <motion.div
           initial="hidden"
           animate="visible"
