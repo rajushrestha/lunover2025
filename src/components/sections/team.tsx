@@ -94,18 +94,18 @@ export default function TeamSection() {
 
   const { scrollYProgress } = useScroll({
     target: scrollRef,
-    offset: ["start 128px", "end start"], // Changed to better control scroll range
+    offset: ["start 128px", "end start"],
   });
 
   const overflow = useTransform(
     scrollYProgress,
-    [0, 0.01, 0.85, 0.95], // Adjusted timing
+    [0, 0.01, 0.9, 0.95], // Adjusted timing to spread over more scroll distance
     ["hidden", "visible", "visible", "clip"]
   );
 
   const translateX = useTransform(
     scrollYProgress,
-    [0, 0.8],
+    [0, 0.85], // Adjusted to complete translation later in the scroll
     [0, -dimensions.translateDistance]
   );
 
@@ -146,7 +146,7 @@ export default function TeamSection() {
           </p>
         </motion.div>
 
-        <div ref={scrollRef} className="min-h-[300vh]">
+        <div ref={scrollRef} className="min-h-[400vh]">
           <motion.div className="sticky top-32">
             <motion.div
               className="flex flex-row flex-nowrap w-auto gap-4 md:gap-8"
@@ -184,7 +184,7 @@ export default function TeamSection() {
           variants={fadeInUp}
           transition={{ duration: 0.5, delay: 0.4 }}
           viewport={{ once: true }}
-          className="flex flex-wrap items-center relative py-12 sm:py-16 md:py-20 lg:py-24 gap-4"
+          className="flex flex-wrap items-center relative pt-12 sm:pt-16 md:pt-20 lg:pt-24 gap-4"
         >
           <span className="text-3xl sm:text-4xl md:text-5xl font-semibold inline-flex">
             Are you our next squad member?

@@ -79,7 +79,7 @@ export default function Footer() {
       </div>
 
       <div className="text-center text-[20.5vw] font-extrabold leading-none overflow-hidden">
-        LUNOVER
+        <Link href="/">LUNOVER</Link>
       </div>
     </footer>
   );
