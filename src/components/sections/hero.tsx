@@ -12,13 +12,15 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
-          <h1 className="text-4xl sm:text-6xl md:text-[7vw] font-normal leading-[1.05] tracking-tight sm:-mx-2">
-            Digital Agency Based in Kathmandu, Nepal.
+          <h1
+            className={`text-4xl sm:text-6xl md:text-[7vw] font-normal leading-tight tracking-tight sm:-mx-2 xl:text-[7rem] `}
+          >
+            Build Websites for Growth—Traffic, Engagement & Sales.
           </h1>
-          <p className="text-xl md:text-2xl lg:text-4xl xl:text-6xl max-w-6xl md:float-right pt-4">
-            We're more than just a design agency - we're your creative partners.
-            Let's collaborate to bring your vision to life with innovation,
-            modern aesthetics, and a touch of friendly expertise.
+          <p className="text-xl md:mt-4 md:text-2xl lg:text-4xl xl:text-6xl max-w-6xl md:float-right pt-4">
+            We build websites that attract visitors, keep them engaged, and turn
+            them into customers. With modern design, seamless user experience,
+            and SEO-driven strategies, we help your business grow.
           </p>
         </motion.div>
       </div>
