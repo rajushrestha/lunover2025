@@ -8,7 +8,7 @@ export default function GetInTouch() {
       <div className="container mx-auto px-4">
         <div className="hidden sm:flex items-center justify-between gap-4 mb-10">
           <span className="text-2xl font-normal">
-            Growth-Focused Digital Agency
+            Take Your Business to the Next Level
           </span>
 
           {/* Get in Touch Button */}
