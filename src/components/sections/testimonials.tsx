@@ -14,9 +14,10 @@ export default function Testimonials() {
           <p className="text-xl sm:text-2xl/tight md:text-3xl/tight lg:text-4xl/tight xl:text-5xl/tight mb-8 md:mb-12">
             Lunover&apos;s Team as a Service solution transformed our
             development capabilities while reducing costs by 43%. Their
-            dedicated team delivered our new website in half the time,
-            increasing traffic by 156% and doubling online sales. We gained
-            enterprise-level talent at a fraction of traditional hiring costs.
+            dedicated team delivered our new website in time, increasing
+            efficiancy and cost savings by 156% and doubling online sales. We
+            gained enterprise-level talent at a fraction of traditional hiring
+            costs.
           </p>
           <div className="flex flex-col items-center justify-center gap-4">
             <div className="w-12 h-12 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-gray-200 to-gray-300" />
