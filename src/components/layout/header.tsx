@@ -10,36 +10,36 @@ import ArrowButtonLink from "../ui/arrow-button";
 const LETTERS = [
   {
     letter: "L",
-    defaultWeight: "font-light",
-    hoverWeight: "group-hover:font-black",
+    defaultWeight: "font-black",
+    hoverWeight: "group-hover:font-light",
   },
   {
-    letter: "u",
-    defaultWeight: "font-normal",
-    hoverWeight: "group-hover:font-extrabold",
-  },
-  {
-    letter: "n",
-    defaultWeight: "font-medium",
-    hoverWeight: "group-hover:font-bold",
-  },
-  {
-    letter: "o",
-    defaultWeight: "font-semibold",
-    hoverWeight: "group-hover:font-semibold",
-  },
-  {
-    letter: "v",
-    defaultWeight: "font-bold",
-    hoverWeight: "group-hover:font-medium",
-  },
-  {
-    letter: "e",
+    letter: "U",
     defaultWeight: "font-extrabold",
     hoverWeight: "group-hover:font-normal",
   },
   {
-    letter: "r",
+    letter: "N",
+    defaultWeight: "font-bold",
+    hoverWeight: "group-hover:font-medium",
+  },
+  {
+    letter: "O",
+    defaultWeight: "font-semibold",
+    hoverWeight: "group-hover:font-semibold",
+  },
+  {
+    letter: "V",
+    defaultWeight: "font-bold",
+    hoverWeight: "group-hover:font-medium",
+  },
+  {
+    letter: "E",
+    defaultWeight: "font-extrabold",
+    hoverWeight: "group-hover:font-normal",
+  },
+  {
+    letter: "R",
     defaultWeight: "font-black",
     hoverWeight: "group-hover:font-light",
   },
@@ -47,6 +47,7 @@ const LETTERS = [
 
 const NAVIGATION_ITEMS = [
   { name: "Home", path: "/" },
+  { name: "Pricing", path: "/pricing" },
   { name: "Services", path: "/services" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },

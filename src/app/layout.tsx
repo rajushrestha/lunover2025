@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import BackgroundNoise from "@/components/background-noise";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,6 +45,8 @@ export default function RootLayout({
           <div className="fixed bottom-2 right-2">
             <ThemeToggle />
           </div>
+
+          <BackgroundNoise />
         </ThemeProvider>
       </body>
     </html>
