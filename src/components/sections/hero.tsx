@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Instrument_Sans } from "next/font/google";
 import { ArrowRight } from "lucide-react";
+import ArrowUpRight from "../icons/arrow-up-right";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -36,7 +37,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-[90vh] flex flex-col lg:flex-row items-stretch bg-white w-full max-w-[94rem] mx-auto">
+    <section className="min-h-[90vh] flex flex-col lg:flex-row items-stretch text-foreground w-full max-w-[94rem] mx-auto">
       {/* Left content side */}
       <div className="w-full lg:w-1/2 p-6 md:p-10 lg:p-16 xl:p-20 flex flex-col justify-center 2xl:pl-0">
         <motion.div
@@ -47,7 +48,7 @@ export default function Hero() {
         >
           <motion.h2
             variants={itemVariants}
-            className={`text-lg md:text-xl text-neutral-500 font-medium ${instrumentSans.className}`}
+            className={`text-lg md:text-xl text-muted-foreground font-medium ${instrumentSans.className}`}
           >
             Growth-Driven Digital Agency
           </motion.h2>
@@ -56,17 +57,17 @@ export default function Hero() {
             variants={itemVariants}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tight"
           >
-            <span className="inline-block text-neutral-900">
+            <span className="inline-block text-foreground">
               Build Websites
             </span>{" "}
-            <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-neutral-950 to-neutral-500 font-bold">
+            <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 font-bold">
               for Growth
             </span>
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="text-xl md:text-2xl text-neutral-700 max-w-xl"
+            className="text-xl md:text-2xl text-muted-foreground max-w-xl"
           >
             We build websites that attract visitors, keep them engaged, and turn
             them into customers—driving measurable business results.
@@ -78,15 +79,15 @@ export default function Hero() {
           >
             <Link
               href="/contact"
-              className="bg-neutral-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-neutral-800 transition-all group flex items-center"
+              className="bg-foreground text-background px-8 py-4 rounded-full text-lg font-medium hover:bg-foreground/80 transition-all group flex items-center"
             >
               Start Your Project
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              <ArrowUpRight className="ml-2 group-hover:rotate-45 transition-transform" />
             </Link>
 
             <Link
               href="/services"
-              className="border-2 border-neutral-300 px-8 py-4 rounded-full text-lg font-medium hover:border-neutral-900 transition-all"
+              className="border-2 border-muted-foreground px-8 py-4 rounded-full text-lg font-medium hover:border-foreground transition-all"
             >
               Explore Services
             </Link>
@@ -98,7 +99,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.8 }}
-          className="grid grid-cols-3 gap-6 mt-16 border-t border-neutral-200 pt-8"
+          className="grid grid-cols-3 gap-6 mt-16 border-t border-muted-foreground pt-8"
         >
           {stats.map((stat, index) => (
             <div key={index} className="space-y-1">
@@ -106,7 +107,7 @@ export default function Hero() {
                 {stat.value}
                 <span className="text-xl ml-0.5">{stat.suffix}</span>
               </p>
-              <p className="text-sm text-neutral-500">{stat.label}</p>
+              <p className="text-base text-muted-foreground">{stat.label}</p>
             </div>
           ))}
         </motion.div>
@@ -117,7 +118,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="w-full lg:w-1/2 bg-neutral-100 relative overflow-hidden min-h-[50vh] lg:min-h-[90vh]"
+        className="w-full lg:w-1/2 bg-background relative overflow-hidden min-h-[50vh] lg:min-h-[90vh]"
       >
         {/* Main dashboard mockup - using gradient placeholder instead of image */}
         <motion.div
@@ -127,37 +128,37 @@ export default function Hero() {
           className="absolute inset-0 flex items-center justify-center p-6 md:p-12"
         >
           <div className="relative w-full max-w-2xl h-auto aspect-[16/10] rounded-xl overflow-hidden shadow-2xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-neutral-100 to-neutral-200">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-background to-background">
               {/* Dashboard UI elements */}
-              <div className="absolute top-0 left-0 right-0 h-12 bg-white border-b border-neutral-200 flex items-center px-4">
-                <div className="w-24 h-4 bg-neutral-300 rounded-full"></div>
+              <div className="absolute top-0 left-0 right-0 h-12 bg-white border-b border-muted-foreground flex items-center px-4">
+                <div className="w-24 h-4 bg-muted-foreground rounded-full"></div>
                 <div className="ml-auto flex space-x-2">
-                  <div className="w-8 h-8 bg-neutral-200 rounded-full"></div>
-                  <div className="w-8 h-8 bg-neutral-200 rounded-full"></div>
+                  <div className="w-8 h-8 bg-muted-foreground rounded-full"></div>
+                  <div className="w-8 h-8 bg-muted-foreground rounded-full"></div>
                 </div>
               </div>
 
               <div className="absolute top-16 left-4 right-4 grid grid-cols-3 gap-4">
                 <div className="bg-white p-4 rounded-lg shadow-sm h-24">
                   <div className="w-12 h-2 bg-blue-400 rounded-full mb-2"></div>
-                  <div className="w-16 h-6 bg-neutral-800 rounded-sm"></div>
-                  <div className="w-12 h-2 bg-neutral-300 rounded-full mt-2"></div>
+                  <div className="w-16 h-6 bg-muted-foreground rounded-sm"></div>
+                  <div className="w-12 h-2 bg-muted-foreground rounded-full mt-2"></div>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-sm h-24">
                   <div className="w-12 h-2 bg-green-400 rounded-full mb-2"></div>
-                  <div className="w-16 h-6 bg-neutral-800 rounded-sm"></div>
-                  <div className="w-12 h-2 bg-neutral-300 rounded-full mt-2"></div>
+                  <div className="w-16 h-6 bg-muted-foreground rounded-sm"></div>
+                  <div className="w-12 h-2 bg-muted-foreground rounded-full mt-2"></div>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-sm h-24">
                   <div className="w-12 h-2 bg-purple-400 rounded-full mb-2"></div>
-                  <div className="w-16 h-6 bg-neutral-800 rounded-sm"></div>
-                  <div className="w-12 h-2 bg-neutral-300 rounded-full mt-2"></div>
+                  <div className="w-16 h-6 bg-muted-foreground rounded-sm"></div>
+                  <div className="w-12 h-2 bg-muted-foreground rounded-full mt-2"></div>
                 </div>
               </div>
 
               <div className="absolute top-48 left-4 right-4 bg-white p-4 rounded-lg shadow-sm">
-                <div className="w-20 h-3 bg-neutral-300 rounded-full mb-4"></div>
-                <div className="w-full h-32 bg-neutral-100 rounded-md flex items-end p-2">
+                <div className="w-20 h-3 bg-muted-foreground rounded-full mb-4"></div>
+                <div className="w-full h-32 bg-muted-foreground rounded-md flex items-end p-2">
                   <div className="w-[10%] h-[20%] bg-blue-400 rounded-sm"></div>
                   <div className="w-[10%] h-[40%] bg-blue-400 rounded-sm ml-2"></div>
                   <div className="w-[10%] h-[70%] bg-blue-400 rounded-sm ml-2"></div>

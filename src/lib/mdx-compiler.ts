@@ -16,6 +16,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   date: string;
+  image?: string;
   gradient: string;
   category: string;
   author?: string;
@@ -29,6 +30,7 @@ export interface BlogFrontmatter {
   title: string;
   excerpt: string;
   date: string;
+  image?: string;
   gradient: string;
   category: string;
   author?: string;
@@ -140,6 +142,11 @@ export async function getAllBlogs(): Promise<BlogPost[]> {
     const dateB = new Date(b.date).getTime();
     return dateB - dateA;
   });
+}
+
+export async function getLatestBlogs(count: number): Promise<BlogPost[]> {
+  const blogs = await getAllBlogs();
+  return blogs.slice(0, count);
 }
 
 // Add this function to extract headings

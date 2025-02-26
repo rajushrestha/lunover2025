@@ -6,47 +6,36 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ArrowUpRight from "../icons/arrow-up-right";
-const blogPosts = [
-  {
-    title:
-      "The Art of Collaboration: Stories from the Design and Development Trenches",
-    date: "March 15, 2024",
-    gradient: "from-gray-200 to-gray-300",
-    // image: "/blog1.png",
-  },
-  {
-    title: "Future proofing web development: navigating the latest trends",
-    date: "March 10, 2024",
-    gradient: "from-gray-500 to-gray-900",
-    // image: "/blog2.png",
-  },
-  {
-    title: "From Concept to Reality: Showcasing Impactful Design Case Studies",
-    date: "March 5, 2024",
-    gradient: "from-gray-300 to-gray-400",
-    // image: "/blog1.png",
-  },
-  {
-    title: "The Importance of User Experience in Web Design",
-    date: "March 5, 2025",
-    gradient: "from-gray-700 to-gray-500",
-    // image: "/blog1.png",
-  },
-];
-
-type BlogPost = {
-  title: string;
-  date: string;
-  image?: string;
-  gradient?: string;
-};
+import { BlogPost, getLatestBlogs } from "@/lib/mdx-compiler";
 
 export default function Blog() {
+  const [latestPosts, setLatestPosts] = useState<BlogPost[]>([]);
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setSelectedPost(blogPosts[0]);
-  }, [blogPosts]);
+    const fetchLatestPosts = async () => {
+      try {
+        // Fetch from an API route instead of direct function call
+        const response = await fetch('/api/blog/latest?count=4');
+        if (!response.ok) throw new Error('Failed to fetch posts');
+        const posts = await response.json();
+        setLatestPosts(posts);
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchLatestPosts();
+  }, []);
+
+  useEffect(() => {
+    if (latestPosts.length > 0) {
+      setSelectedPost(latestPosts[0]);
+    }
+  }, [latestPosts]);
 
   return (
     <section className="py-20 sm:py-32">
@@ -87,14 +76,8 @@ export default function Blog() {
           </div>
 
           <div className="lg:w-3/5 divide-y divide-border xl:pl-10">
-            {blogPosts.map((post, index) => {
-              const active = selectedPost?.title === post.title;
-              const activeClass = active
-                ? "text-foreground"
-                : "text-foreground/60";
-              const hoverClass = active
-                ? "text-foreground"
-                : "text-foreground/60";
+            {latestPosts.map((post, index) => {
+              const active = selectedPost?.slug === post.slug;
               return (
                 <motion.article
                   key={post.title}
@@ -105,7 +88,7 @@ export default function Blog() {
                   className="group"
                 >
                   <Link
-                    href={`/blog/${post.title}`}
+                    href={`/blog/${post.slug}`}
                     className={cn(
                       "flex items-start justify-between py-6 xl:py-10",
                       "transition-colors group-hover:text-foreground",
