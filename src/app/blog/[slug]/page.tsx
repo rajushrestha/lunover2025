@@ -1,28 +1,33 @@
-import { getMdxContent, getAllPosts } from '@/lib/mdx-compiler';
-import { notFound } from 'next/navigation';
+import { BlogPost, getAllBlogs, getBlogContent } from "@/lib/mdx-compiler";
+import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import GradientBackground from '@/components/gradient-background';
+import GradientBackground from "@/components/gradient-background";
+import TocSidebar from "@/components/toc-sidebar";
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
+  const posts = await getAllBlogs();
   return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = await params;
 
-  const post = await getMdxContent(slug);
+  const post = await getBlogContent(slug);
 
   if (!post) {
     notFound();
   }
 
   // Get all posts for related posts section
-  const allPosts = await getAllPosts();
+  const allPosts = await getAllBlogs();
 
   // Get random related posts
   const shuffleArray = <T,>(array: T[]): T[] => {
@@ -35,14 +40,17 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   };
 
   const relatedPosts = shuffleArray(
-    allPosts.filter((p) => p.slug !== slug)
+    allPosts.filter((p: BlogPost) => p.slug !== slug)
   ).slice(0, 3);
 
-  const { frontmatter, content } = post;
+  const { frontmatter, content, headings } = post;
 
   return (
     <>
-      <div className="container mx-auto px-4 py-8 md:py-16">
+      <div className="container mx-auto px-4 py-8 md:py-16 relative flex">
+        {/* Table of Contents Sidebar */}
+        <TocSidebar headings={headings} />
+
         {/* Post Header */}
         <div className="max-w-4xl mx-auto">
           <div className="mb-6 flex items-center gap-4">

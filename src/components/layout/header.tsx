@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { ChartNoAxesGantt, X } from "lucide-react";
 import ArrowUpRight from "../icons/arrow-up-right";
 import { usePathname } from "next/navigation";
+import ArrowButtonLink from "../ui/arrow-button";
 
 const LETTERS = [
   {
@@ -146,13 +147,7 @@ export default function Header() {
               </div>
 
               {/* Get in Touch Button */}
-              <Link
-                href="/contact"
-                className="flex items-center gap-2 px-8 py-3 text-lg font-medium rounded-full border-2 border-border hover:bg-foreground hover:text-background transition-colors duration-300 group"
-              >
-                <span>GET IN TOUCH</span>
-                <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
-              </Link>
+              <ArrowButtonLink href="/contact">GET IN TOUCH</ArrowButtonLink>
             </div>
 
             {/* Mobile Navigation */}

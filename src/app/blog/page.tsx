@@ -1,11 +1,10 @@
 import ArrowUpRight from "@/components/icons/arrow-up-right";
-import { getAllPosts } from "@/lib/mdx-compiler";
-import Image from "next/image";
+import { getAllBlogs } from "@/lib/mdx-compiler";
 import Link from "next/link";
 import GradientBackground from '@/components/gradient-background';
 
 export default async function BlogPage() {
-  const blogPosts = await getAllPosts();
+  const blogPosts = await getAllBlogs();
   const featuredPost = blogPosts[0];
   const remainingPosts = blogPosts.slice(1);
 

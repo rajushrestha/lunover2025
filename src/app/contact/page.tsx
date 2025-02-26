@@ -46,7 +46,7 @@ export default function ContactPage() {
       });
 
       if (response.ok) {
-        console.log("Email sent successfully");
+        // console.log("Email sent successfully");
         setIsSubmitted(true);
         // Smooth scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });

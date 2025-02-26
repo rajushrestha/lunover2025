@@ -1,8 +1,19 @@
 import ProcessSection from "@/components/sections/process";
 import ServicesDetails from "@/components/sections/services-details";
 import AIApplications from "@/components/sections/ai-applications";
+import { getAllServices, getAIServices } from "@/lib/mdx-compiler";
+import { Metadata } from "next";
 
-export default function ServicesPage() {
+export const metadata: Metadata = {
+  title: "Growth-Driving Digital Services | Lunover",
+  description:
+    "Strategic digital solutions that turn your website into a powerful growth engine—attracting visitors, improving engagement, and converting them into loyal customers.",
+};
+
+export default async function ServicesPage() {
+  const services = await getAllServices();
+  const aiServices = await getAIServices();
+
   return (
     <>
       <section>
@@ -23,7 +34,7 @@ export default function ServicesPage() {
 
       <ServicesDetails />
 
-      <AIApplications />
+      <AIApplications aiServices={aiServices} />
 
       <ProcessSection />
     </>
