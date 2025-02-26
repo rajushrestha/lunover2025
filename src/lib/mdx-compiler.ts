@@ -2,7 +2,6 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
-import GithubSlugger from "github-slugger";
 
 const MARKDOWN_PATH = path.join(process.cwd(), "src/markdown");
 
@@ -78,8 +77,6 @@ export async function getBlogContent(slug: string): Promise<{
   const filePath = path.join(MARKDOWN_PATH, "blogs", `${slug}.mdx`);
 
   const source = await fs.readFile(filePath, "utf8");
-
-  const slugger = new GithubSlugger();
 
   const rehypeSlug = (await import("rehype-slug")).default;
 
@@ -161,8 +158,8 @@ const extractHeadings = (content: string) => {
     // Create base id
     let baseId = text
       .toLowerCase()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/\s+/g, "-");
+      .replace(/[^\w\s-]/g, "") // Remove all chars except word chars, spaces, hyphens
+      .replace(/\s+/g, (match) => match.length > 1 ? '--' : '-'); // Replace multiple spaces with -- and single space with -
 
     // Get current count for this heading text
     const count = (headingCounts.get(baseId) || 0) + 1;

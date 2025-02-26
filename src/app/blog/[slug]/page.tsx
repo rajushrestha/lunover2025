@@ -85,7 +85,7 @@ export default async function BlogPostPage({
           </div>
 
           {/* Post Content - Now using RSC */}
-          <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-normal">
+          <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-normal" id="content">
             {content}
           </article>
         </div>

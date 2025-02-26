@@ -373,7 +373,7 @@ export default async function ServicePage({
           <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-indigo-500/5 to-purple-500/5 blur-3xl -z-10"></div>
           <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-blue-500/5 to-teal-500/5 blur-3xl -z-10"></div>
 
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 relative">
             <div className="max-w-6xl mx-auto">
               <div className="flex flex-col lg:flex-row gap-8">
                 {/* Table of Contents Sidebar */}
@@ -381,7 +381,7 @@ export default async function ServicePage({
 
                 {/* Main Content */}
                 <div className="flex-1">
-                  <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-normal prose-headings:scroll-mt-28 prose-headings:outline-none prose-img:rounded-2xl prose-img:shadow-lg prose-headings:mb-6 prose-p:leading-relaxed prose-li:marker:text-primary">
+                  <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-normal prose-headings:scroll-mt-28 prose-headings:outline-none prose-img:rounded-2xl prose-img:shadow-lg prose-headings:mb-6 prose-p:leading-relaxed prose-li:marker:text-primary" id="content">
                     {content}
                   </article>
                 </div>
