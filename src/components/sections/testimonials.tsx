@@ -25,9 +25,7 @@ export default function Testimonials() {
               <span className="font-medium">
                 Mikael Svensson<span className="hidden sm:inline">,</span>
               </span>
-              <span className="text-muted-foreground">
-                CEO at TechGrowth Solutions
-              </span>
+              <span className="text-muted-foreground">Pigment AB</span>
             </div>
           </div>
         </motion.div>
