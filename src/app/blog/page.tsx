@@ -4,6 +4,12 @@ import Link from "next/link";
 import GradientBackground from "@/components/gradient-background";
 import SubpageHero from "@/components/sections/subpage-hero";
 
+export const metadata = {
+  title: "Digital Insights & Stories | Lunover Blog",
+  description:
+    "Explore our latest insights on web development, AI technology, and digital transformation strategies that help businesses thrive in the modern digital landscape.",
+};
+
 export default async function BlogPage() {
   const blogPosts = await getAllBlogs();
   const featuredPost = blogPosts[0];
@@ -12,8 +18,8 @@ export default async function BlogPage() {
   return (
     <>
       <SubpageHero
-        title="Our Blog"
-        description="Insights, strategies, and stories about creating growth-focused digital experiences."
+        title="Digital Insights & Stories"
+        description="Explore our latest insights on web development, AI technology, and digital transformation strategies that help businesses thrive in the modern digital landscape."
       />
 
       {/* Featured Post */}

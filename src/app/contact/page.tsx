@@ -45,9 +45,7 @@ export default function ContactPage() {
       });
 
       if (response.ok) {
-        // console.log("Email sent successfully");
         setIsSubmitted(true);
-        // Smooth scroll to top
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         console.error("Failed to send email");
@@ -68,8 +66,12 @@ export default function ContactPage() {
   return (
     <>
       <SubpageHero
-        title={isSubmitted ? "Thank you!" : "Get in touch with us."}
-        description="We'd love to hear from you. Let's discuss how we can help grow your business."
+        title={
+          isSubmitted
+            ? "Thank you for reaching out!"
+            : "Let's Build Something Amazing"
+        }
+        description="We're excited to hear about your project. Whether you're looking to build a new website, integrate AI solutions, or transform your digital presence, we're here to help."
       />
 
       <section className="py-12 md:py-20 lg:py-32 xl:py-40">
@@ -77,18 +79,18 @@ export default function ContactPage() {
           <div className="flex flex-col md:flex-row xl:flex-col gap-12 md:gap-10 lg:gap-20 xl:gap-24 xl:max-w-md mb-12 md:mb-20 xl:mb-0">
             <div className="w-1/2 xl:w-full">
               <h2 className="text-2xl md:text-3xl font-normal uppercase text-muted-foreground mb-4">
-                Let's grab a coffee
+                Visit Us
               </h2>
-              <p className="text-3xl md:text-4xl">
-                We are based in Thamel, Kathmandu, Nepal.
-              </p>
+              <p className="text-3xl md:text-4xl">Thamel, Kathmandu, Nepal</p>
             </div>
             <div className="w-1/2 xl:w-full">
               <h2 className="text-2xl md:text-3xl font-normal uppercase text-muted-foreground mb-4">
-                Email Us
+                Get in Touch
               </h2>
               <p className="text-3xl md:text-4xl">
-                <a href="mailto:hello@lunover.com">hello@lunover.com</a>
+                <a href="mailto:hello@lunover.com" className="hover:underline">
+                  hello@lunover.com
+                </a>
               </p>
             </div>
           </div>
@@ -98,14 +100,15 @@ export default function ContactPage() {
               <div className="flex flex-col gap-8">
                 <div className="space-y-6">
                   <h2 className="text-3xl lg:text-4xl xl:text-5xl">
-                    Message sent successfully!
+                    Message Received!
                   </h2>
                   <p className="text-xl lg:text-2xl text-muted-foreground max-w-xl">
-                    We've received your message and will get back to you
-                    shortly.
+                    Thank you for reaching out. We'll review your message and
+                    get back to you within 24 hours.
                   </p>
                   <p className="text-xl lg:text-2xl text-muted-foreground max-w-xl">
-                    Thank you for reaching out to us.
+                    We're excited to learn more about your project and discuss
+                    how we can help bring your vision to life.
                   </p>
                 </div>
                 <button
@@ -130,21 +133,21 @@ export default function ContactPage() {
                     name="name"
                     required
                     disabled={isLoading}
-                    placeholder="What's your name?"
+                    placeholder="Your name"
                     className="w-full bg-transparent border-b border-border focus:outline-none focus:border-foreground transition-colors md:text-2xl lg:text-3xl disabled:opacity-50"
                   />
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <p className="text-3xl lg:text-4xl xl:text-5xl flex-shrink-0">
-                    and I work in
+                    and I work at
                   </p>
                   <input
                     type="text"
                     name="company"
                     required
                     disabled={isLoading}
-                    placeholder="What's your company name?"
+                    placeholder="Your company name"
                     className="w-full bg-transparent border-b border-border focus:outline-none focus:border-foreground transition-colors md:text-2xl lg:text-3xl disabled:opacity-50"
                   />
                 </div>
@@ -152,18 +155,18 @@ export default function ContactPage() {
                 {/* Services Selection */}
                 <div className="flex flex-col lg:flex-row gap-4">
                   <p className="text-3xl lg:text-4xl xl:text-5xl">
-                    I'm looking for help with:
+                    I'm interested in:
                   </p>
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-wrap gap-3">
                       {[
-                        "Brand Identity Design",
-                        "Website Design",
-                        "App Design",
-                        "Development",
+                        "Custom Web Development",
+                        "AI Integration",
                         "UI/UX Design",
-                        "Graphic Design",
-                        "Something else",
+                        "Digital Marketing",
+                        "E-commerce Solutions",
+                        "Mobile App Development",
+                        "Other Services",
                       ].map((service) => (
                         <label
                           key={service}
@@ -207,7 +210,7 @@ export default function ContactPage() {
 
                 {/* Contact Information */}
                 <p className="text-3xl lg:text-4xl xl:text-5xl">
-                  Feel free to reach me at:
+                  You can reach me at:
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <input
@@ -215,24 +218,24 @@ export default function ContactPage() {
                     name="email"
                     required
                     disabled={isLoading}
-                    placeholder="What's your email address?"
+                    placeholder="Your email address"
                     className="w-full bg-transparent border-b border-border focus:outline-none focus:border-foreground transition-colors md:text-2xl lg:text-3xl disabled:opacity-50"
                   />
                   <p className="text-3xl lg:text-4xl xl:text-5xl flex-shrink-0">
-                    and let's talk.
+                    and I'd love to chat.
                   </p>
                 </div>
 
                 {/* Project Details */}
                 <div className="flex flex-col gap-4">
                   <p className="text-3xl leading-normal lg:text-4xl/normal xl:text-5xl/normal mb-4">
-                    I'd like to share more about my project details:
+                    Here's what I'd like to build:
                   </p>
                   <textarea
                     name="project"
                     required
                     disabled={isLoading}
-                    placeholder="Tell us about your project"
+                    placeholder="Tell us about your project goals and requirements"
                     rows={4}
                     className="w-full bg-transparent border-b border-border focus:outline-none focus:border-foreground transition-colors resize-none md:text-2xl lg:text-3xl disabled:opacity-50"
                   />
@@ -248,8 +251,8 @@ export default function ContactPage() {
                       className="w-4 h-4"
                     />
                     <span className="text-xl lg:text-2xl">
-                      I agree with the{" "}
-                      <a href="#" className="underline">
+                      I agree to the{" "}
+                      <a href="/privacy" className="underline">
                         Privacy Policy
                       </a>
                     </span>
@@ -266,7 +269,7 @@ export default function ContactPage() {
                         SENDING...
                       </>
                     ) : (
-                      "START A JOURNEY"
+                      "START A PROJECT"
                     )}
                   </button>
                 </div>

@@ -6,9 +6,9 @@ import { Metadata } from "next";
 import SubpageHero from "@/components/sections/subpage-hero";
 
 export const metadata: Metadata = {
-  title: "Growth-Driving Digital Services | Lunover",
+  title: "Digital Services & Solutions | Lunover",
   description:
-    "Strategic digital solutions that turn your website into a powerful growth engine—attracting visitors, improving engagement, and converting them into loyal customers.",
+    "Transform your digital presence with our comprehensive suite of services. From custom web development to AI-powered solutions, we help businesses thrive in the digital age.",
 };
 
 export default async function ServicesPage() {
@@ -18,8 +18,8 @@ export default async function ServicesPage() {
   return (
     <>
       <SubpageHero
-        title="Growth-Driving Services"
-        description="We provide strategic digital solutions that turn your website into a powerful growth engine—attracting more visitors, keeping them engaged, and converting them into loyal customers."
+        title="Digital Services & Solutions"
+        description="From custom web development to AI-powered solutions, we offer a comprehensive suite of services designed to transform your digital presence and drive business growth."
       />
 
       <ServicesDetails />

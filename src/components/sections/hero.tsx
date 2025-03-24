@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue } from "framer-motion";
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useMemo, useCallback, memo } from "react";
 
 // Create deterministic particle positions using a seed
 const generateParticles = (count: number) => {
@@ -20,28 +20,87 @@ const generateParticles = (count: number) => {
   return particles;
 };
 
+// Memoize the particle component to prevent unnecessary re-renders
+const Particle = memo(
+  ({ particle }: { particle: ReturnType<typeof generateParticles>[0] }) => (
+    <motion.div
+      className="absolute w-1 h-1 rounded-full bg-white"
+      style={{
+        left: particle.left,
+        top: particle.top,
+      }}
+      animate={{
+        scale: [1, 1.5, 1],
+        opacity: [0.1, 0.5, 0.1],
+      }}
+      transition={{
+        duration: particle.duration,
+        repeat: Infinity,
+        delay: particle.delay,
+        ease: "easeInOut",
+      }}
+    />
+  )
+);
+Particle.displayName = "Particle";
+
+// Memoize the gradient orb component
+const GradientOrb = memo(({ index }: { index: number }) => (
+  <motion.div
+    className="absolute w-[20rem] sm:w-[30rem] md:w-[40rem] h-[20rem] sm:h-[30rem] md:h-[40rem] rounded-full mix-blend-screen filter blur-[60px] sm:blur-[90px] md:blur-[120px]"
+    style={{
+      background: [
+        "radial-gradient(circle, rgba(255,77,77,0.7) 0%, rgba(255,0,140,0.7) 50%, rgba(109,40,217,0.7) 100%)",
+        "radial-gradient(circle, rgba(0,245,160,0.7) 0%, rgba(0,217,245,0.7) 50%, rgba(59,130,246,0.7) 100%)",
+        "radial-gradient(circle, rgba(255,200,55,0.7) 0%, rgba(255,128,8,0.7) 50%, rgba(255,77,77,0.7) 100%)",
+      ][index],
+      left: `${20 + index * 25}%`,
+      top: `${10 + index * 20}%`,
+    }}
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{
+      opacity: [0.3, 0.7, 0.3],
+      scale: [1, 1.2, 1],
+      x: [0, 30, 0],
+      y: [0, -30, 0],
+    }}
+    transition={{
+      duration: 15,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut",
+      delay: index * 2,
+    }}
+  />
+));
+GradientOrb.displayName = "GradientOrb";
+
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
-  const particles = generateParticles(50);
+  // Memoize particles to prevent recalculation on every render
+  const particles = useMemo(() => generateParticles(50), []);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Memoize the mouse move handler
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (rect) {
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        mouseX.set(x);
+        mouseY.set(y);
+      }
+    },
+    [mouseX, mouseY]
+  );
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (rect) {
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      mouseX.set(x);
-      mouseY.set(y);
-    }
-  };
+  // Memoize hover handlers
+  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
+  const handleMouseLeave = useCallback(() => setIsHovered(false), []);
 
   return (
     <motion.section
@@ -56,55 +115,12 @@ export default function Hero() {
       <div className="absolute inset-0 overflow-hidden">
         {/* Dynamic particles */}
         {particles.map((particle, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full bg-white"
-            style={{
-              left: particle.left,
-              top: particle.top,
-            }}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.1, 0.5, 0.1],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              delay: particle.delay,
-              ease: "easeInOut",
-            }}
-          />
+          <Particle key={i} particle={particle} />
         ))}
 
         {/* Gradient orbs */}
         {Array.from({ length: 3 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-[20rem] sm:w-[30rem] md:w-[40rem] h-[20rem] sm:h-[30rem] md:h-[40rem] rounded-full mix-blend-screen filter blur-[60px] sm:blur-[90px] md:blur-[120px]"
-            style={{
-              background: [
-                "radial-gradient(circle, rgba(255,77,77,0.7) 0%, rgba(255,0,140,0.7) 50%, rgba(109,40,217,0.7) 100%)",
-                "radial-gradient(circle, rgba(0,245,160,0.7) 0%, rgba(0,217,245,0.7) 50%, rgba(59,130,246,0.7) 100%)",
-                "radial-gradient(circle, rgba(255,200,55,0.7) 0%, rgba(255,128,8,0.7) 50%, rgba(255,77,77,0.7) 100%)",
-              ][i],
-              left: `${20 + i * 25}%`,
-              top: `${10 + i * 20}%`,
-            }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{
-              opacity: [0.3, 0.7, 0.3],
-              scale: [1, 1.2, 1],
-              x: [0, 30, 0],
-              y: [0, -30, 0],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-              delay: i * 2,
-            }}
-          />
+          <GradientOrb key={i} index={i} />
         ))}
       </div>
 
@@ -147,8 +163,8 @@ export default function Hero() {
               <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                 <Link
                   href="/contact"
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   className="group relative px-6 sm:px-8 py-3 sm:py-4 text-white text-base sm:text-lg rounded-full overflow-hidden"
                 >
                   <motion.div

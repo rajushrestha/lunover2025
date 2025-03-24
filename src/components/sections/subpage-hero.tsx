@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useMotionValue } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useRef, useMemo } from "react";
 
 // Create deterministic particle positions using a seed
 const generateParticles = (count: number) => {
@@ -30,25 +30,13 @@ export default function SubpageHero({
   background,
 }: SubpageHeroProps) {
   const containerRef = useRef<HTMLElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
 
-  const particles = generateParticles(30); // Fewer particles for subpages
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (rect) {
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      mouseX.set(x);
-      mouseY.set(y);
-    }
-  };
+  // Memoize particles to prevent recalculation on every render
+  const particles = useMemo(() => generateParticles(15), []); // Further reduced particles
 
   return (
     <motion.section
       ref={containerRef}
-      onMouseMove={handleMouseMove}
       className={`relative h-[50vh] min-h-[32rem] flex items-end overflow-hidden ${
         background || "bg-[#0A0A0F]"
       }`}
@@ -58,57 +46,30 @@ export default function SubpageHero({
     >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Dynamic particles */}
-        {particles.map((particle, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full bg-white/10"
-            style={{
-              left: particle.left,
-              top: particle.top,
-            }}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              delay: particle.delay,
-              ease: "easeInOut",
-            }}
+        {/* Gradient orbs - using a single container with multiple backgrounds */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-radial from-[rgba(255,77,77,0.3)] via-[rgba(255,0,140,0.3)] to-[rgba(109,40,217,0.3)] animate-float-slow" />
+          <div
+            className="absolute inset-0 bg-gradient-radial from-[rgba(0,245,160,0.3)] via-[rgba(0,217,245,0.3)] to-[rgba(59,130,246,0.3)] animate-float-slow"
+            style={{ animationDelay: "2s" }}
           />
-        ))}
+        </div>
 
-        {/* Gradient orbs */}
-        {Array.from({ length: 2 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-[15rem] sm:w-[20rem] md:w-[25rem] h-[15rem] sm:h-[20rem] md:h-[25rem] rounded-full mix-blend-screen filter blur-[40px] sm:blur-[60px] md:blur-[80px]"
-            style={{
-              background: [
-                "radial-gradient(circle, rgba(255,77,77,0.5) 0%, rgba(255,0,140,0.5) 50%, rgba(109,40,217,0.5) 100%)",
-                "radial-gradient(circle, rgba(0,245,160,0.5) 0%, rgba(0,217,245,0.5) 50%, rgba(59,130,246,0.5) 100%)",
-              ][i],
-              left: `${20 + i * 30}%`,
-              top: `${10 + i * 20}%`,
-            }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{
-              opacity: [0.2, 0.4, 0.2],
-              scale: [1, 1.1, 1],
-              x: [0, 20, 0],
-              y: [0, -20, 0],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-              delay: i * 2,
-            }}
-          />
-        ))}
+        {/* Dynamic particles - using a single container with multiple pseudo-elements */}
+        <div className="absolute inset-0">
+          {particles.map((particle, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 rounded-full bg-white/5 animate-pulse-slow"
+              style={{
+                left: particle.left,
+                top: particle.top,
+                animationDuration: `${particle.duration}s`,
+                animationDelay: `${particle.delay}s`,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Main Content */}

@@ -58,11 +58,19 @@ export default {
       },
       animation: {
         ticker: "ticker 20s linear infinite",
+        float: "float 10s ease-in-out infinite",
       },
       keyframes: {
         ticker: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)", opacity: "0.2" },
+          "50%": {
+            transform: "translate(20px, -20px) scale(1.1)",
+            opacity: "0.4",
+          },
         },
       },
     },
