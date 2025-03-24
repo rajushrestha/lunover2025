@@ -10,6 +10,7 @@ import { DynamicIcon, IconName } from "lucide-react/dynamic";
 import ArrowButtonLink from "@/components/ui/arrow-button";
 import ArrowUpRight from "@/components/icons/arrow-up-right";
 import TocSidebar from "@/components/toc-sidebar";
+import SubpageHero from "@/components/sections/subpage-hero";
 
 // Dynamically import components that might have client-side interactivity
 const ServiceFaqSection = dynamic(
@@ -134,9 +135,10 @@ export default async function ServicePage({
     ];
 
     // Get service features if available
-    const features: ServiceFeature[] =
-      Array.isArray((frontmatter as any).features) ?
-        (frontmatter as any).features
+    const features: ServiceFeature[] = Array.isArray(
+      (frontmatter as any).features
+    )
+      ? (frontmatter as any).features
       : [
           {
             title: "High Performance",
@@ -166,139 +168,10 @@ export default async function ServicePage({
 
     return (
       <>
-        {/* Immersive Hero Section */}
-        <section className="relative lg:min-h-screen flex items-center pb-20 overflow-hidden">
-          {/* Animated Background */}
-          <div className="absolute inset-0 z-0">
-            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background to-transparent z-10"></div>
-            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-background to-transparent z-10"></div>
-
-            {/* Animated grid pattern */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:24px_24px] opacity-30"></div>
-
-            {/* Floating decoration elements */}
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"></div>
-            <div className="absolute top-1/4 -left-24 w-64 h-64 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-20 w-72 h-72 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-full blur-3xl"></div>
-          </div>
-
-          <div className="container relative mx-auto px-4 z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div>
-                <div className="inline-flex items-center px-4 py-2 bg-background/80 backdrop-blur-sm rounded-full mb-6 border border-border/50">
-                  <Link
-                    href="/services"
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 group"
-                  >
-                    <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
-                    <span>Services</span>
-                  </Link>
-                  <span className="mx-2 text-muted-foreground/50">/</span>
-                  <span className="text-sm font-medium">
-                    {frontmatter.title}
-                  </span>
-                </div>
-
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold !leading-[1.1] mb-8">
-                  {frontmatter.title}
-                </h1>
-
-                <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-xl leading-relaxed">
-                  {frontmatter.description}
-                </p>
-
-                <div className="flex flex-wrap gap-4 mb-4">
-                  <ArrowButtonLink href="/contact" variant="inverse">
-                    GET STARTED
-                  </ArrowButtonLink>
-                  <ArrowButtonLink
-                    href="#benefits"
-                    variant="secondary"
-                    hideArrow={true}
-                  >
-                    Learn More
-                  </ArrowButtonLink>
-                </div>
-
-                <div className="mt-10 space-y-3">
-                  {benefits.slice(0, 3).map((benefit, idx) => (
-                    <div key={idx} className="flex items-center gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center">
-                        <Check className="w-4 h-4 text-white" />
-                      </div>
-                      <span className="text-base md:text-lg opacity-90">
-                        {benefit}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="hidden relative h-[30rem] lg:h-[36rem] lg:flex items-center justify-center">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Animated Service Icon */}
-                  <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-2xl p-0.5 bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg transform -rotate-6 hover:rotate-0 transition-transform duration-500">
-                    <div className="absolute inset-0 rounded-2xl bg-background/80 backdrop-blur-sm flex items-center justify-center">
-                      <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center relative">
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 animate-pulse"></div>
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center">
-                          <div className="text-indigo-500 w-12 h-12 md:w-14 md:h-14">
-                            <DynamicIcon
-                              name={frontmatter.icon as IconName}
-                              className="w-12 h-12 md:w-14 md:h-14"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Floating detail elements */}
-                  {features && features.length > 0 && (
-                    <>
-                      {/* First feature */}
-                      <div className="absolute top-1/4 -right-4 transform rotate-3 w-auto min-w-32 max-w-48 h-auto bg-background/80 backdrop-blur-sm rounded-xl shadow-lg p-3 text-xs font-medium border border-border/40 animate-float-slow">
-                        <div className="flex items-center gap-2">
-                          <DynamicIcon
-                            name={(features[0].icon as IconName) || "zap"}
-                            className="w-5 h-5 text-amber-500"
-                          />
-                          <span>{features[0].title}</span>
-                        </div>
-                      </div>
-
-                      {/* Second feature if available */}
-                      {features.length > 1 && (
-                        <div className="absolute bottom-1/4 -left-4 transform -rotate-3 w-auto min-w-32 max-w-48 h-auto bg-background/80 backdrop-blur-sm rounded-xl shadow-lg p-3 text-xs font-medium border border-border/40 animate-float">
-                          <div className="flex items-center gap-2">
-                            <DynamicIcon
-                              name={(features[1].icon as IconName) || "shield"}
-                              className="w-5 h-5 text-emerald-500"
-                            />
-                            <span>{features[1].title}</span>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Third feature if available - positioned differently */}
-                      {features.length > 2 && (
-                        <div className="absolute top-2/3 right-10 transform rotate-1 w-auto min-w-32 max-w-48 h-auto bg-background/80 backdrop-blur-sm rounded-xl shadow-lg p-3 text-xs font-medium border border-border/40 animate-float-medium">
-                          <div className="flex items-center gap-2">
-                            <DynamicIcon
-                              name={(features[2].icon as IconName) || "heart"}
-                              className="w-5 h-5 text-purple-500"
-                            />
-                            <span>{features[2].title}</span>
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <SubpageHero
+          title={frontmatter.title}
+          description={frontmatter.description}
+        />
 
         {/* Key Benefits Section */}
         <section
@@ -381,7 +254,10 @@ export default async function ServicePage({
 
                 {/* Main Content */}
                 <div className="flex-1">
-                  <article className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-normal prose-headings:scroll-mt-28 prose-headings:outline-none prose-img:rounded-2xl prose-img:shadow-lg prose-headings:mb-6 prose-p:leading-relaxed prose-li:marker:text-primary" id="content">
+                  <article
+                    className="prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-normal prose-headings:scroll-mt-28 prose-headings:outline-none prose-img:rounded-2xl prose-img:shadow-lg prose-headings:mb-6 prose-p:leading-relaxed prose-li:marker:text-primary"
+                    id="content"
+                  >
                     {content}
                   </article>
                 </div>

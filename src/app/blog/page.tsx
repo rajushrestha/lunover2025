@@ -1,7 +1,8 @@
 import ArrowUpRight from "@/components/icons/arrow-up-right";
 import { getAllBlogs } from "@/lib/mdx-compiler";
 import Link from "next/link";
-import GradientBackground from '@/components/gradient-background';
+import GradientBackground from "@/components/gradient-background";
+import SubpageHero from "@/components/sections/subpage-hero";
 
 export default async function BlogPage() {
   const blogPosts = await getAllBlogs();
@@ -10,20 +11,10 @@ export default async function BlogPage() {
 
   return (
     <>
-      <section>
-        <div className="container mx-auto px-4">
-          <h1 className="text-5xl sm:text-6xl md:text-[7vw] font-normal leading-[1.05] tracking-tight sm:-mx-2">
-            Our Blog
-          </h1>
-
-          <div className="py-8 sm:py-10 md:py-12 lg:py-16">
-            <p className="max-w-3xl text-2xl leading-normal md:text-2xl/normal lg:text-3xl/normal xl:text-4xl/normal font-normal tracking-tight">
-              Insights, strategies, and stories about creating growth-focused
-              digital experiences.
-            </p>
-          </div>
-        </div>
-      </section>
+      <SubpageHero
+        title="Our Blog"
+        description="Insights, strategies, and stories about creating growth-focused digital experiences."
+      />
 
       {/* Featured Post */}
       {featuredPost && (
@@ -43,7 +34,10 @@ export default async function BlogPage() {
                   </span>
                 </div>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-4">
-                  <Link href={`/blog/${featuredPost.slug}`} className="hover:underline">
+                  <Link
+                    href={`/blog/${featuredPost.slug}`}
+                    className="hover:underline"
+                  >
                     {featuredPost.title}
                   </Link>
                 </h2>

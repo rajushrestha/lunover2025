@@ -12,16 +12,17 @@ import {
   FileText,
   CreditCard,
   Send,
-    Package,
-    LifeBuoy,
-    Check,
-    Star,
+  Package,
+  LifeBuoy,
+  Check,
+  Star,
 } from "lucide-react";
 import ArrowButtonLink from "@/components/ui/arrow-button";
 import { useRef, useEffect, useState } from "react";
 import { useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import PricingServicesContent from "@/components/sections/pricing-services-content";
+import SubpageHero from "@/components/sections/subpage-hero";
 
 export default function PricingPage() {
   const containerVariants = {
@@ -173,84 +174,11 @@ export default function PricingPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Banner Section */}
-      <section className="py-24 md:py-32 lg:py-40 relative overflow-hidden">
-        {/* Animated decorative elements */}
-        <motion.div
-          className="absolute top-20 right-20 w-64 h-64 bg-blue-700/15 dark:bg-blue-200/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            y: [0, -15, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        <motion.div
-          className="absolute bottom-20 left-20 w-64 h-64 bg-purple-700/15 dark:bg-purple-200/20 rounded-full blur-3xl"
-          animate={{
-            y: [0, -25, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:32px_32px] opacity-40"></div>
-
-        <div className="container mx-auto px-4 text-center relative">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.h1
-              variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium mb-6"
-            >
-              Simple, Transparent{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 font-bold">
-                Pricing
-              </span>
-            </motion.h1>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-3xl mx-auto"
-            >
-              Unlock unlimited design and development resources with our
-              flexible membership plans. No contracts, no hidden fees.
-            </motion.p>
-
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <Link
-                href="#pricing"
-                className="bg-foreground text-background px-8 py-4 rounded-full text-lg font-medium hover:bg-foreground/80 transition-all group flex items-center justify-center"
-              >
-                View Pricing
-                <ArrowUpRight className="ml-2 group-hover:rotate-45 transition-transform" />
-              </Link>
-
-              <Link
-                href="/contact"
-                className="border-2 border-muted-foreground px-8 py-4 rounded-full text-lg font-medium hover:border-foreground transition-all"
-              >
-                Book a Call
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+    <>
+      <SubpageHero
+        title="Pricing Plans"
+        description="Choose the perfect plan for your business needs. Our flexible pricing options ensure you get the right level of support and services."
+      />
 
       {/* Membership Benefits */}
       <section className="py-24 md:py-32 lg:py-40 relative">
@@ -801,6 +729,6 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

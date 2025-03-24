@@ -2,6 +2,7 @@
 
 import { CheckIcon, Loader2 } from "lucide-react";
 import { useState } from "react";
+import SubpageHero from "@/components/sections/subpage-hero";
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -10,10 +11,8 @@ export default function ContactPage() {
   const [showServiceError, setShowServiceError] = useState(false);
 
   const handleServiceChange = (service: string, checked: boolean) => {
-    setSelectedServices(prev =>
-      checked
-        ? [...prev, service]
-        : prev.filter(s => s !== service)
+    setSelectedServices((prev) =>
+      checked ? [...prev, service] : prev.filter((s) => s !== service)
     );
     if (checked) setShowServiceError(false);
   };
@@ -49,7 +48,7 @@ export default function ContactPage() {
         // console.log("Email sent successfully");
         setIsSubmitted(true);
         // Smooth scroll to top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         console.error("Failed to send email");
       }
@@ -68,13 +67,10 @@ export default function ContactPage() {
 
   return (
     <>
-      <section>
-        <div className="container mx-auto px-4">
-          <h1 className="text-5xl sm:text-6xl md:text-[7vw] font-normal leading-[1.05] tracking-tight sm:-mx-2 max-w-3xl">
-            {isSubmitted ? "Thank you!" : "Get in touch with us."}
-          </h1>
-        </div>
-      </section>
+      <SubpageHero
+        title={isSubmitted ? "Thank you!" : "Get in touch with us."}
+        description="We'd love to hear from you. Let's discuss how we can help grow your business."
+      />
 
       <section className="py-12 md:py-20 lg:py-32 xl:py-40">
         <div className="container mx-auto px-4 flex flex-col xl:flex-row justify-between gap-10 lg:gap-20">
@@ -105,7 +101,8 @@ export default function ContactPage() {
                     Message sent successfully!
                   </h2>
                   <p className="text-xl lg:text-2xl text-muted-foreground max-w-xl">
-                    We've received your message and will get back to you shortly.
+                    We've received your message and will get back to you
+                    shortly.
                   </p>
                   <p className="text-xl lg:text-2xl text-muted-foreground max-w-xl">
                     Thank you for reaching out to us.
@@ -183,7 +180,9 @@ export default function ContactPage() {
                             name="services"
                             value={service}
                             checked={selectedServices.includes(service)}
-                            onChange={(e) => handleServiceChange(service, e.target.checked)}
+                            onChange={(e) =>
+                              handleServiceChange(service, e.target.checked)
+                            }
                             disabled={isLoading}
                             className="hidden"
                           />
