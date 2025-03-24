@@ -39,7 +39,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="pt-[5.5rem] sm:pt-[6.5rem]">{children}</main>
+          <main>{children}</main>
           <Footer />
 
           <div className="fixed bottom-2 right-2">

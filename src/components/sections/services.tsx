@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import ArrowButtonLink from "../ui/arrow-button";
 
 const services = [
   {
@@ -30,7 +30,7 @@ const services = [
       "Our apps are built for user retention and business growth. From concept to launch, we develop mobile and web applications that keep users engaged, maximize conversions, and provide measurable ROI for your business.",
   },
   {
-    title: "Growth-Focused Team as a Service",
+    title: "Team as a Service (TaaS)",
     description:
       "We provide dedicated teams focused on growing your business through increased traffic, engagement, and sales. Our specialists work as an extension of your organization with clear growth objectives.",
   },
@@ -52,13 +52,6 @@ export default function Services() {
               website into a powerful business growth engine.
             </p>
           </div>
-
-          <Link
-            href="/services"
-            className="text-lg sm:text-2xl font-medium inline-flex flex-shrink-0 uppercase underline underline-offset-8 hover:no-underline"
-          >
-            See All Services
-          </Link>
         </div>
 
         <div className="divide-y divide-border">
@@ -78,6 +71,12 @@ export default function Services() {
               </p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="flex justify-center mt-16">
+          <ArrowButtonLink href="/services" variant="inverse">
+            EXPLORE ALL SERVICES
+          </ArrowButtonLink>
         </div>
       </div>
     </section>
