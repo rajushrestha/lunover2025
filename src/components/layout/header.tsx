@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 
 const NAVIGATION_ITEMS = [
   { name: "Work", path: "/work" },
@@ -15,6 +16,7 @@ const NAVIGATION_ITEMS = [
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function Header() {
       >
         <div
           className={`absolute inset-0 backdrop-blur-xl transition-all duration-500 ${
-            isScrolled ? "bg-[#0A0A0F]" : "bg-transparent"
+            isScrolled ? "bg-[#0A0A0F]/80" : "bg-transparent"
           }`}
         />
 
@@ -46,15 +48,26 @@ export default function Header() {
             {/* Logo */}
             <Link
               href="/"
-              className="text-2xl font-bold tracking-tight hover:opacity-90 transition-all duration-300 group"
+              className="relative group"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             >
-              <motion.span
-                className="text-white inline-block"
-                whileHover={{ scale: 1.05 }}
+              <motion.div
+                className="text-2xl font-bold tracking-tight"
+                animate={{
+                  scale: isHovered ? 1.05 : 1,
+                  rotate: isHovered ? 2 : 0,
+                }}
                 transition={{ duration: 0.3 }}
               >
-                LUNOVER
-              </motion.span>
+                <span className="bg-gradient-to-r from-[#FF4D4D] via-[#FFC837] to-[#00F5A0] bg-clip-text text-transparent">
+                  LUNOVER
+                </span>
+              </motion.div>
+              <motion.div
+                className="absolute -inset-2 bg-gradient-to-r from-[#FF4D4D]/20 via-[#FFC837]/20 to-[#00F5A0]/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                initial={false}
+              />
             </Link>
 
             {/* Desktop Navigation */}
@@ -92,32 +105,29 @@ export default function Header() {
               className="flex md:hidden w-12 h-12 items-center justify-center relative z-50 rounded-full hover:bg-white/5 transition-colors duration-300"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
-              <div className="w-6 h-5 relative">
-                <motion.span
-                  className="absolute left-0 top-0 w-full h-[2px] bg-gradient-to-r from-[#FF4D4D] via-[#FFC837] to-[#00F5A0] rounded-full"
-                  animate={{
-                    rotate: isMenuOpen ? 45 : 0,
-                    y: isMenuOpen ? 10 : 0,
-                  }}
-                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                />
-                <motion.span
-                  className="absolute left-0 top-1/2 w-full h-[2px] bg-gradient-to-r from-[#FF4D4D] via-[#FFC837] to-[#00F5A0] rounded-full"
-                  animate={{
-                    opacity: isMenuOpen ? 0 : 1,
-                    x: isMenuOpen ? 8 : 0,
-                  }}
-                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                />
-                <motion.span
-                  className="absolute left-0 bottom-0 w-full h-[2px] bg-gradient-to-r from-[#FF4D4D] via-[#FFC837] to-[#00F5A0] rounded-full"
-                  animate={{
-                    rotate: isMenuOpen ? -45 : 0,
-                    y: isMenuOpen ? -10 : 0,
-                  }}
-                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                />
-              </div>
+              <AnimatePresence mode="wait">
+                {isMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 90 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-6 h-6 text-white" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ opacity: 0, rotate: 90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: -90 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="w-6 h-6 text-white" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </button>
           </nav>
         </div>

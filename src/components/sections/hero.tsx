@@ -1,20 +1,21 @@
 "use client";
 
-import { motion, useMotionValue } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState, useMemo, useCallback, memo } from "react";
+import { ArrowRight } from "lucide-react";
 
 // Create deterministic particle positions using a seed
 const generateParticles = (count: number) => {
   const particles = [];
   for (let i = 0; i < count; i++) {
-    // Use a deterministic seed based on index
-    const seed = i * 7919; // Using a prime number for better distribution
+    const seed = i * 7919;
     particles.push({
       left: `${seed % 100}%`,
       top: `${(seed * 7919) % 100}%`,
       duration: 3 + (seed % 2),
       delay: seed % 2,
+      size: 1 + (seed % 2),
     });
   }
   return particles;
@@ -24,10 +25,12 @@ const generateParticles = (count: number) => {
 const Particle = memo(
   ({ particle }: { particle: ReturnType<typeof generateParticles>[0] }) => (
     <motion.div
-      className="absolute w-1 h-1 rounded-full bg-white"
+      className="absolute rounded-full bg-white"
       style={{
         left: particle.left,
         top: particle.top,
+        width: particle.size,
+        height: particle.size,
       }}
       animate={{
         scale: [1, 1.5, 1],
@@ -84,7 +87,7 @@ export default function Hero() {
   // Memoize particles to prevent recalculation on every render
   const particles = useMemo(() => generateParticles(50), []);
 
-  // Memoize the mouse move handler
+  // Calculate mouse position relative to container
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
       const rect = containerRef.current?.getBoundingClientRect();
@@ -101,6 +104,10 @@ export default function Hero() {
   // Memoize hover handlers
   const handleMouseEnter = useCallback(() => setIsHovered(true), []);
   const handleMouseLeave = useCallback(() => setIsHovered(false), []);
+
+  // Calculate gradient position based on mouse movement
+  const gradientX = useTransform(mouseX, [0, window.innerWidth], [0, 100]);
+  const gradientY = useTransform(mouseY, [0, window.innerHeight], [0, 100]);
 
   return (
     <motion.section
@@ -122,6 +129,17 @@ export default function Hero() {
         {Array.from({ length: 3 }).map((_, i) => (
           <GradientOrb key={i} index={i} />
         ))}
+
+        {/* Mouse-following gradient */}
+        <motion.div
+          className="absolute w-[500px] h-[500px] rounded-full mix-blend-screen filter blur-[100px] opacity-30"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)",
+            x: gradientX,
+            y: gradientY,
+          }}
+        />
       </div>
 
       {/* Main Content */}
@@ -129,8 +147,8 @@ export default function Hero() {
         <div className="max-w-[90rem] mx-auto">
           <div className="space-y-4 sm:space-y-6 md:space-y-8">
             {/* Main Heading */}
-            <motion.h1
-              className="text-[clamp(2.5rem,10vw,12rem)] font-bold bg-gradient-to-r from-[#FF4D4D] via-[#FFC837] to-[#00F5A0] bg-clip-text text-transparent tracking-tight leading-[0.9]"
+            <motion.div
+              className="relative"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -139,10 +157,25 @@ export default function Hero() {
                 delay: 0.2,
               }}
             >
-              DIGITAL
-              <br />
-              EXCELLENCE
-            </motion.h1>
+              <motion.h1
+                className="text-[clamp(2.5rem,10vw,12rem)] font-bold bg-gradient-to-r from-[#FF4D4D] via-[#FFC837] to-[#00F5A0] bg-clip-text text-transparent tracking-tight leading-[0.9]"
+                animate={{
+                  backgroundPosition: isHovered ? ["0%", "200%"] : "0%",
+                }}
+                transition={{
+                  duration: 1.5,
+                  ease: "easeInOut",
+                }}
+              >
+                DIGITAL
+                <br />
+                EXCELLENCE
+              </motion.h1>
+              <motion.div
+                className="absolute -inset-4 bg-gradient-to-r from-[#FF4D4D]/10 via-[#FFC837]/10 to-[#00F5A0]/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                initial={false}
+              />
+            </motion.div>
 
             {/* Description and CTA */}
             <motion.div
@@ -186,34 +219,26 @@ export default function Hero() {
                   />
                   <span className="relative z-10 flex items-center gap-2 sm:gap-3">
                     Start Creating
-                    <motion.svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      className="w-4 h-4 sm:w-5 sm:h-5"
-                      animate={{ rotate: isHovered ? 45 : 0 }}
-                      transition={{
-                        duration: 0.4,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
+                    <motion.div
+                      animate={{ x: isHovered ? 4 : 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <path
-                        d="M5 5L19 19M19 19V5M19 19H5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                    </motion.svg>
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </motion.div>
                   </span>
                 </Link>
 
                 <a
                   href="#work"
-                  className="text-white/60 hover:text-white transition-colors duration-300 text-base sm:text-lg flex items-center gap-2"
+                  className="text-white/60 hover:text-white transition-colors duration-300 text-base sm:text-lg flex items-center gap-2 group"
                 >
                   View Our Work
-                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                  <motion.span
+                    animate={{ x: isHovered ? 4 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     →
-                  </span>
+                  </motion.span>
                 </a>
               </div>
             </motion.div>
